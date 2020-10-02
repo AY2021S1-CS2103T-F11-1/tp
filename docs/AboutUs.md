@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/damithc)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+- Role: Project Advisor
 
 ### Christopher Goh
 
@@ -26,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/chrisgzf)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Team Lead
+- Responsibilities: UI
 
 ### Noel Kwan
 
@@ -35,8 +35,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/kwannoel)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Developer
+- Responsibilities: Data
 
 ### Sun Yitao
 
@@ -45,8 +45,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/sun-yitao)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Developer
+- Responsibilities: Dev Ops + Threading
 
 ### Rachel Ng
 
@@ -55,8 +55,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/rnmy)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Testing
+- Role: Developer
+- Responsibilities: Testing
 
 ### Rishi Ravikumar
 
@@ -65,5 +65,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/rishi5154)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: UI 
+- Role: Developer
+- Responsibilities: UI
