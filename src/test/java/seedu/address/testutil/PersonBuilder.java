@@ -53,6 +53,8 @@ public class PersonBuilder {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        telegram = personToCopy.getTelegram();
+        matricNumber = personToCopy.getMatricNumber();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -62,22 +64,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
         return this;
     }
 
@@ -110,6 +96,22 @@ public class PersonBuilder {
      */
     public PersonBuilder withMatricNumber(String matricNumber) {
         this.matricNumber = new MatricNumber(matricNumber);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAddress(String address) {
+        this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
