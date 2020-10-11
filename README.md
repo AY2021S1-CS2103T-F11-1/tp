@@ -12,7 +12,7 @@ If you are interested in using TAsker, head over to the Quick Start section of t
 
 ## User Interface
 
-![Ui](docs/images/Ui-updated.png)
+![Ui](docs/images/Ui-change.png)
 
 ## Acknowledgements
 
