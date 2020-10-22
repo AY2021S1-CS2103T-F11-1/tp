@@ -5,25 +5,9 @@ title: User Guide
 
 TAsker is a **desktop app for Teaching Assistants (TAs) to manage student administration, optimized for use via a Command Line Interface (CLI)**. It still has the benefits of a Graphical User Interface (GUI). If you can type fast, TAsker can get your administrative tasks done faster than traditional GUI apps.
 
-### Table of Contents
-
-- [Quick start](#quick-start)
-- [Features](#features)
-  - [Viewing help : `help`](#viewing-help--help)
-  - [Adding a student: `add`](#adding-a-student-add)
-  - [Listing all students : `list`](#listing-all-students--list)
-  - [Editing a student : `edit`](#editing-a-student--edit)
-  - [Locating students by name: `find`](#locating-students-by-name-find)
-  - [Deleting a student : `delete`](#deleting-a-student--delete)
-  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  - [Show Attendance [coming soon] : `showatt`](#show-attendance-coming-soon--showatt)
-  - [Marking Attendance [coming soon] : `attend`](#marking-attendance-coming-soon--attend)
-  - [Unmarking Attendance [coming soon] : `unattend`](#unmarking-attendance-coming-soon--unattend)
-  - [Exiting the program : `exit`](#exiting-the-program--exit)
-  - [Saving the data](#saving-the-data)
-  - [Archiving data files [coming in v2.0] : `archive`](#archiving-data-files-coming-in-v20--archive)
-- [FAQ](#faq)
-- [Command summary](#command-summary)
+<!-- prettier-ignore -->
+- Table of Contents
+{:toc}
 
 ---
 
