@@ -144,7 +144,7 @@ on TAsker's GUI.
 
 1. `LogicManager` processes the user input "list".
 2. AddressBookParser is called with it's `parseCommand(userInput)` method to parse input, which returns a new
-  `ListCommand` object
+   `ListCommand` object
 3. Our new `ListCommand` object calls its own `execute` method with the `model` field of `LogicManager` as input.
 4. Within the `ListCommand#execute` method, the `model` field calls its own `updateFilteredPersonList` method to update
    the list to show all persons.
@@ -164,7 +164,7 @@ specific student is displayed on TAsker's GUI.
 
 1. `LogicManager` processes the user input "find Roy", for example.
 2. AddressBookParser is called with it's `parseCommand(userInput)` method to parse input, which in turns creates a
- new `FindCommandParser` object.
+   new `FindCommandParser` object.
 3. The `FindCommandParser` object calls its own `parse` method with the `" Roy"` as input.
 4. Now, the `" Roy"` argument is broken down into its individual strings, with whitespace removed and into an array,
    which is processed and used as predicate for filtering out the desired student.
@@ -178,34 +178,36 @@ All of these details and interactions are captured in the sequence diagram below
 ![ListStudentSequenceDiagram](images/FindStudentSequenceDiagram.png)
 
 ### Update Student data
+
 `TAsker` also supports the updating of student data. With the aforementioned extension of fields, the update feature now
 encompasses both the `MatricNumber` and `Telegram` fields as well.
 
 When the `edit <INDEX_TO_UPDATE> <FIELDS_TO_UPDATE>` command is inputted, the fields provided in `<FIELDS_TO_UPDATE>`
- will be updated for the student with the specific `<INDEX_TO_UPDATE>` on the GUI.
+will be updated for the student with the specific `<INDEX_TO_UPDATE>` on the GUI.
 
 Fields in `<FIELDS_TO_UPDATE>` should adhere to the following syntax:
 
-| Field        | Syntax              |
-|:------------:|:-------------------:|
-| Name         | n/< NAME >          |
-| Phone Number | p/< PHONE >         |
-| Email        | e/< EMAIL >         |
-| Telegram User| t/< TELEGRAM >      |
-| Matric Number| m/< MATRIC_NUMBER > |
-| Tag          | tg/< TAG >          |
+|     Field     |       Syntax        |
+| :-----------: | :-----------------: |
+|     Name      |     n/< NAME >      |
+| Phone Number  |     p/< PHONE >     |
+|     Email     |     e/< EMAIL >     |
+| Telegram User |   t/< TELEGRAM >    |
+| Matric Number | m/< MATRIC_NUMBER > |
+|      Tag      |     tg/< TAG >      |
 
 More than one tag can be provided and inputting tg/ without specifying any tags after it removes all existing tags.
 
 #### Sequence of action
+
 1. `LogicManager` processes the user input, for instance `"edit 1 p/91234567 m/A1234567Z"`, with
-the `LogicManager#execute(commandText)` method.
+   the `LogicManager#execute(commandText)` method.
 2. `AddressBookParser` is then called with it's `parseCommand(userInput)` method to parse input, which in turns creates
-a new `EditCommandParser` object.
+   a new `EditCommandParser` object.
 3. The `EditCommandParser` object calls its own `parse` method with `" 1 p/91234567 m/A1234567Z"` as input.
 4. Now, the `" 1 p/91234567 m/A1234567Z"` argument is broken down into an `Index` and tokens in an `ArgumentMultiMap`
-based on the field prefixes. Subsequently, an `EditPersonDescriptor` object is created and used to store the fields that
-are present in the `ArgumentMultiMap`.
+   based on the field prefixes. Subsequently, an `EditPersonDescriptor` object is created and used to store the fields that
+   are present in the `ArgumentMultiMap`.
 5. For valid inputs, an `EditCommand` object is then created with the `Index` and `EditPersonDescriptor` as inputs.
 6. Our new `EditCommand` object calls its own `execute` method with the `model` field of `LogicManager` as input.
 7. Lastly, a new `CommandResult` with the relevant message is finally returned to `LogicManager`.
@@ -221,35 +223,38 @@ All of these details and interactions are captured in the sequence diagram below
 
 ##### Using regexes to validate our fields
 
-To ensure the correct fields are included, 
+To ensure the correct fields are included,
 we have introduced regexes for Matriculation numbers and telegram handles
- which perform the validation for us.
- 
+which perform the validation for us.
+
 - Matriculation number validation regex
-    ```
-    ^A\\d{7}[A-Z]$
-    ```
+
+  ```
+  ^A\\d{7}[A-Z]$
+  ```
+
   `^` means to match from the start of the line.
-  
+
   `A` means the first letter should be 'A'.
-  
-  `\\d{7}` means there should be 7 digits from 0 to 9. 
+
+  `\\d{7}` means there should be 7 digits from 0 to 9.
   Note that Java uses `\\d` rather than `\d` to escape the `\` character from the string.
-  
+
   `[A-Z]` means that the last character should be one of A to Z.
 
 - Telegram handle validation regex
-    ```
-    ^[a-zA-Z0-9_-]{5,32}$
-    ```
-  
-   `^` means to match from the start of the line.
-   
-   `[a-zA-Z0-9_-]` means we accept alphanumeric characters, including capital letters. We also accept `-` and `-`.
-   
-   `[...]{5, 32}` means we expect the string to contain between 5 to 32 (inclusive) of the above characters.
 
-Implementing this is rather straightforward since we can reference other fields (`address`, `name`, ...) we use. 
+  ```
+  ^[a-zA-Z0-9_-]{5,32}$
+  ```
+
+  `^` means to match from the start of the line.
+
+  `[a-zA-Z0-9_-]` means we accept alphanumeric characters, including capital letters. We also accept `-` and `-`.
+
+  `[...]{5, 32}` means we expect the string to contain between 5 to 32 (inclusive) of the above characters.
+
+Implementing this is rather straightforward since we can reference other fields (`address`, `name`, ...) we use.
 
 ##### Builder pattern
 
@@ -271,6 +276,7 @@ class Test {
 ```
 
 Now we add the two fields, `MatricNumber` and `Telegram` to `Person` and we have to update our tests:
+
 ```java
 class Test {
   test() {
@@ -294,6 +300,7 @@ We are only concerned about valid name and email, so we shouldn't have to update
 `PersonBuilder` introduces default values for fields we don't want to test.
 
 With `PersonBuilder`:
+
 ```java
 class Test {
   test() {

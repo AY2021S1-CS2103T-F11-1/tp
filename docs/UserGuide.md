@@ -228,17 +228,17 @@ Format: `archive`
 
 ## Command summary
 
-| Action                   | Format, Examples                                                                                                                                                      |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Action                   | Format, Examples                                                                                                                                                                                                           |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**                  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/james-ho m/A0202345B tg/friend tg/colleague` |
-| **Clear**                | `clear`                                                                                                                                                               |
-| **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**                 | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TELEGRAM] [m/MATRIC_NUMBER] [tg/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                 | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **Show Attendance**      | `showatt [INDEX] [d/DATE]`                                                                                                                                            |
-| **Marking Attendance**   | `attend [INDEX] d/DATE`                                                                                                                                               |
-| **Unmarking Attendance** | `unattend INDEX d/DATE`                                                                                                                                               |
-| **Archive**              | `archive`                                                                                                                                                             |
-| **List**                 | `list`                                                                                                                                                                |
-| **Help**                 | `help`                                                                                                                                                                |
-| **Exit**                 | `exit`                                                                                                                                                                |
+| **Clear**                | `clear`                                                                                                                                                                                                                    |
+| **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                        |
+| **Edit**                 | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TELEGRAM] [m/MATRIC_NUMBER] [tg/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                       |
+| **Find**                 | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                 |
+| **Show Attendance**      | `showatt [INDEX] [d/DATE]`                                                                                                                                                                                                 |
+| **Marking Attendance**   | `attend [INDEX] d/DATE`                                                                                                                                                                                                    |
+| **Unmarking Attendance** | `unattend INDEX d/DATE`                                                                                                                                                                                                    |
+| **Archive**              | `archive`                                                                                                                                                                                                                  |
+| **List**                 | `list`                                                                                                                                                                                                                     |
+| **Help**                 | `help`                                                                                                                                                                                                                     |
+| **Exit**                 | `exit`                                                                                                                                                                                                                     |
