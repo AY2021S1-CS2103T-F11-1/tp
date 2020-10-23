@@ -24,6 +24,7 @@ public class Attendance implements Comparable<Attendance> {
      * @param date
      */
     private Attendance(Date date) {
+        assert date != null;
         this.date = date;
     }
 
