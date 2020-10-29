@@ -27,7 +27,7 @@ TAsker is a **desktop app for Teaching Assistants (TAs) to manage student admini
 
    - **`list`** : Lists all student.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/johndoe m/A0123456B tg/friends` : Adds a student named `John Doe` to the Address Book.
+   - **`add`**`n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B tg/friends` : Adds a student named `John Doe` to the Address Book.
 
    - **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -69,7 +69,7 @@ Format: `help`
 
 Adds a student to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
@@ -77,8 +77,8 @@ A student can have any number of tags (including 0)
 
 Examples:
 
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/johndoe m/A0123456B`
-- `add n/Betsy Crowe tg/friend e/betsycrowe@example.com t/betsy_crowe m/A0201234C a/Newgate Avenue p/1234567 tg/groupmate`
+- `add n/John Doe p/98765432 e/johnd@example.com t/johndoe m/A0123456B`
+- `add n/Betsy Crowe tg/friend e/betsycrowe@example.com t/betsy_crowe m/A0201234C p/1234567 tg/groupmate`
 
 ### Listing all students : `list`
 
@@ -90,7 +90,7 @@ Format: `list`
 
 Edits an existing student's information.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TELEGRAM] [m/MATRIC_NUMBER] [tg/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TELEGRAM] [m/MATRIC_NUMBER] [tg/TAG]…​`
 
 - Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -238,10 +238,10 @@ Format: `exportatt`
 
 | Action                   | Format, Examples                                                                                                                                                                                                           |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**                  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/james-ho m/A0202345B tg/friend tg/colleague` |
+| **Add**                  | `add n/NAME p/PHONE_NUMBER e/EMAIL t/TELEGRAM m/MATRIC_NUMBER [tg/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/james-ho m/A0202345B tg/friend tg/colleague` |
 | **Clear**                | `clear`                                                                                                                                                                                                                    |
 | **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                        |
-| **Edit**                 | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TELEGRAM] [m/MATRIC_NUMBER] [tg/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                       |
+| **Edit**                 | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TELEGRAM] [m/MATRIC_NUMBER] [tg/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                       |
 | **Find**                 | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                 |
 | **Show Attendance**      | `showatt [INDEX] [d/DATE]`                                                                                                                                                                                                 |
 | **Marking Attendance**   | `attend [INDEX] d/DATE`                                                                                                                                                                                                    |
