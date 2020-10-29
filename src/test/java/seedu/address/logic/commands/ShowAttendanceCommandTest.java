@@ -20,7 +20,7 @@ public class ShowAttendanceCommandTest {
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void presentAttendance() {
+    public void execute_presentAttendance_success() {
         Attendance attendance = Attendance.fromDateString("27/03/1998");
         String message = "Alice Pauline was present on Fri Mar 27 00:00:00 SGT 1998";
 
@@ -29,7 +29,7 @@ public class ShowAttendanceCommandTest {
     }
 
     @Test
-    public void absentAttendance() {
+    public void execute_absentAttendance_success() {
         Attendance attendance = Attendance.fromDateString("28/03/1998");
         String message = "Alice Pauline was absent on Sat Mar 28 00:00:00 SGT 1998";
 
