@@ -144,12 +144,28 @@ Clears all entries from the list of students.
 
 Format: `clear`
 
-### Show Attendance [coming soon] : `showatt`
+### Show Attendance: `showatt`
 
-Shows the attendance for tutorial on all dates / a specified date.
+Shows the attendance for tutorial on a specified date.
 
 Format: `showatt [INDEX] [d/DATE]`
 
+Examples:
+
+- `showatt 1 d/12/12/2020` checks if the first student 
+  in the list attended class on 12th December, 2020.
+  
+  For example if "John" was our first student, 
+  we would get the following response if he was present:
+  ```
+  John was present on Sat Dec 12 00:00:00 SGT 2020
+  ```
+  
+  If he was absent we would get this instead:
+  ```
+  John was absent on Sat Dec 12 00:00:00 SGT 2020
+  ```
+ 
 ### Marking Attendance : `attend`
 
 Marks the student as present for tutorial on a specified date.
