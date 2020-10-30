@@ -60,7 +60,7 @@ public class UnattendCommand extends Command {
         Person unattendedPerson = updateAttendanceForPerson(personToAttend, attendance);
         model.setPerson(personToAttend, unattendedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_UNATTEND_SUCCESS, personToAttend.getName()));
+        return new CommandResult(String.format(MESSAGE_UNATTEND_SUCCESS, personToAttend));
     }
 
     private static Person updateAttendanceForPerson(Person personToAttend, Attendance attendance)

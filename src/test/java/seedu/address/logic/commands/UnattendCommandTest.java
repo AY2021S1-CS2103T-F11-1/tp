@@ -35,15 +35,15 @@ public class UnattendCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person attendedPerson = model.getFilteredPersonList().get(0);
-        attendedPerson = new PersonBuilder(attendedPerson)
+        Person personToUnattend = model.getFilteredPersonList().get(0);
+        personToUnattend = new PersonBuilder(personToUnattend)
                 .withAttendance(VALID_ATTENDANCE_AMY, NEW_ATTENDANCE_STRING).build();
         UnattendCommand unattend = new UnattendCommand(INDEX_FIRST_PERSON, NEW_ATTENDANCE);
-
-        String expectedMessage = String.format(UnattendCommand.MESSAGE_UNATTEND_SUCCESS, attendedPerson);
+        String expectedMessage = String.format(UnattendCommand.MESSAGE_UNATTEND_SUCCESS, personToUnattend);
 
         Model expectedModel = new ModelManager(new Tasker(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), attendedPerson);
+        // remove attendance
+        model.setPerson(model.getFilteredPersonList().get(0), personToUnattend);
 
         assertCommandSuccess(unattend, model, expectedMessage, expectedModel);
     }
@@ -60,7 +60,8 @@ public class UnattendCommandTest {
         String expectedMessage = String.format(UnattendCommand.MESSAGE_UNATTEND_SUCCESS, unattendedPerson);
 
         Model expectedModel = new ModelManager(new Tasker(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), unattendedPerson);
+        // remove attendance
+        model.setPerson(model.getFilteredPersonList().get(0), unattendedPerson);
 
         assertCommandSuccess(unattend, model, expectedMessage, expectedModel);
     }
@@ -76,12 +77,17 @@ public class UnattendCommandTest {
     @Test
     public void execute_duplicateAttendanceFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        int personIndex = INDEX_FIRST_PERSON.getZeroBased();
+        Person personToUnattend = model.getAddressBook().getPersonList().get(personIndex);
 
-        Person personToAttend = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        personToUnattend = new PersonBuilder(personToUnattend)
+                .withAttendance().build();
+        model.setPerson(model.getFilteredPersonList().get(personIndex), personToUnattend);
+
         UnattendCommand unattend = new UnattendCommand(INDEX_FIRST_PERSON, AMY_ATTENDANCE);
 
         assertCommandFailure(unattend, model, String.format(UnattendCommand.MESSAGE_ALREADY_UNATTENDED,
-                personToAttend.getName(), AMY_ATTENDANCE));
+                personToUnattend.getName(), AMY_ATTENDANCE));
     }
 
     @Test
