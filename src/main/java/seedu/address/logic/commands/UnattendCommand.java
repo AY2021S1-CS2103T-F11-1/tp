@@ -21,14 +21,14 @@ public class UnattendCommand extends Command {
     public static final String COMMAND_WORD = "unattend";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks absence for the person identified by the index number used in the displayed person list.\n"
+            + ": Removes attendance for the person identified by the index number used in the displayed person list.\n"
             + "Attendance date should be in dd/MM/yyyy format.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DATE + "DATE\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "27/03/1998";
 
     public static final String MESSAGE_ALREADY_UNATTENDED = "%1$s already unattended on %2$s";
-    public static final String MESSAGE_UNATTEND_SUCCESS = "Marked absence for person: %1$s";
+    public static final String MESSAGE_UNATTEND_SUCCESS = "Removed attendance for person: %1$s";
 
     private final Index targetIndex;
     private final Attendance attendance;
@@ -60,17 +60,17 @@ public class UnattendCommand extends Command {
         Person unattendedPerson = updateAttendanceForPerson(personToAttend, attendance);
         model.setPerson(personToAttend, unattendedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_UNATTEND_SUCCESS, personToAttend));
+        return new CommandResult(String.format(MESSAGE_UNATTEND_SUCCESS, personToAttend.getName()));
     }
 
     private static Person updateAttendanceForPerson(Person personToAttend, Attendance attendance)
             throws CommandException {
         assert personToAttend != null;
         SortedSet<Attendance> updatedAttendances = new TreeSet<>(personToAttend.getAttendances());
-        if (updatedAttendances.contains(attendance)) {
+        if (!updatedAttendances.contains(attendance)) {
             throw new CommandException(String.format(MESSAGE_ALREADY_UNATTENDED, personToAttend.getName(), attendance));
         }
-        updatedAttendances.add(attendance);
+        updatedAttendances.remove(attendance);
         return new Person(personToAttend.getName(),
                 personToAttend.getPhone(),
                 personToAttend.getEmail(),
