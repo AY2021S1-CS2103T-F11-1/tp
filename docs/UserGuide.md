@@ -148,7 +148,7 @@ Format: `clear`
 
 Shows the attendance for tutorial on a specified date.
 
-Format: `showatt [INDEX] [d/DATE]`
+Format: `showatt INDEX [d/DATE]`
 
 Examples:
 
@@ -170,7 +170,7 @@ Examples:
 
 Marks the student as present for tutorial on a specified date.
 
-Format: `attend [INDEX] d/DATE`
+Format: `attend INDEX d/DATE`
 
 Examples:
 
@@ -181,7 +181,7 @@ Examples:
 
 Marks the student as absent (default) for tutorial on a specified date.
 
-Format: `unattend [INDEX] d/DATE`
+Format: `unattend INDEX d/DATE`
 
 - `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
 - `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
