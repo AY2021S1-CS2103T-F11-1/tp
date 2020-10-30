@@ -172,11 +172,19 @@ Marks the student as present for tutorial on a specified date.
 
 Format: `attend [INDEX] d/DATE`
 
+Examples:
+
+- `attend 1 d/12/12/2000` Marks the student at index 1 as present on 12 December 2000.
+- `attend 2 d/12/01/2002` Marks the student at index 2 as present on 12 January 2002.
+
 ### Unmarking Attendance : `unattend`
 
 Marks the student as absent (default) for tutorial on a specified date.
 
 Format: `unattend [INDEX] d/DATE`
+
+- `unattend 1 d/12/12/2000` Marks the student at index 1 as absent on 12 December 2000.
+- `unattend 2 d/12/01/2002` Marks the student at index 2 as absent on 12 January 2002.
 
 ### Exiting the program : `exit`
 
