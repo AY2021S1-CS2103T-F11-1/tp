@@ -391,6 +391,12 @@ class PersonBuilder {
 
 All our existing tests using `PersonBuilder` will still work, and all we had to do was update definitions in `PersonBuilder`.
 
+### Export attendance
+
+The `ExportAttendanceCommand` writes a new csv to `data/attendance_{CURRENT_DATE}_{CURRENT_TIME}.csv`. The csv columns headers are the names of the students and the rows are the dates. Each cell is marked with `ATTENDED` or `ABSENT` depending on whether the attendance for that student on that particular date has been marked.
+
+The details of the implementation are as follows. First, we iterate through each student, calling `person.getAttendances` and adding the resulting attendances to a TreeSet called `allAttendances` that will contain all the dates in sorted order so we can form the rows of the csv. We also create a new HashSet of `Attendance` for each student, stored in an ArrayList so that the queries for the following part can be made faster. Next, we go through each date in `allAttendances`, and iterate through the ArrayList of HashSet of `Attendance`. If a date exists in that HashSet, the cell corresponding to the student and date will be marked as `ATTENDED`, and `ABSENT` otherwise.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
