@@ -215,6 +215,18 @@ Examples:
 - `add-consult n/John Doe d/10/10/2020 tm/18:00 a/SOC Basement ty/personal`
 - `add-consult n/Ann Lim d/30/05/2020 tm/11:00 a/Tembusu College ty/group `
 
+### Deleting a consultation: `del-consult`
+
+Deletes a consultation from the address book.
+
+Use this to indicate a consultation has been completed or remove incorrect consultation slots.
+
+Format: `del-consult INDEX`
+
+Examples:
+
+- `del-consult 1`
+
 ### Listing all consultations: `list-consult`
 
 Shows a list of all consultations in charge by the TA.
