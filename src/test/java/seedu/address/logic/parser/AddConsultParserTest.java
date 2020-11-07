@@ -25,11 +25,11 @@ import static seedu.address.testutil.TypicalConsults.GROUP_CONSULT;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddConsultCommand;
+import seedu.address.model.consultation.Address;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.Day;
 import seedu.address.model.consultation.Time;
 import seedu.address.model.consultation.Type;
-import seedu.address.model.person.Address;
 import seedu.address.testutil.ConsultationBuilder;
 
 
