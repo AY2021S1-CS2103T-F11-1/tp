@@ -19,4 +19,13 @@ public class TypeTest {
         assertEquals(new Type("personal").toString(), "Personal");
         assertEquals(new Type("group").toString(), "Group");
     }
+
+    @Test
+    public void equals_isSymmetric() {
+        Type x = new Type("personal");
+        Type y = new Type("personal");
+        assertEquals(x, y);
+        assertEquals(y, x);
+        assertEquals(x.hashCode(), y.hashCode());
+    }
 }
