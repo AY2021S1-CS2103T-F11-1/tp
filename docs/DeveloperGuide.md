@@ -393,15 +393,25 @@ All our existing tests using `PersonBuilder` will still work, and all we had to 
 
 ### Show attendance
 
+#### Sequence of action
+
 Shows if a student is present on a specific day.
 
-![ShowAttendanceSequenceDiagram](images/ShowAttendanceSequenceDiagram.png)
-
 1. Parse the `showatt` command
-2. Get the person list
-3. Select the person at the specified index, date
-4. If no such person exists, indicate the person is absent
-5. Otherwise indicate the person is present on that day.
+2. Get the person list (`lastShownList`) with `model.getFilteredPersonList()`
+3. Get the person at the index with `lastShownList.get(targetIndex.getZeroBased())`
+3. Check if the student has attended at a specific date by calling:
+
+   ``` java
+   boolean hasAttended = attendances
+       .stream()
+       .anyMatch(attendance1 -> attendance1.equals(attendance));
+   ```
+
+4. If no such person exists, return a message indicating the person is absent
+5. Otherwise return a message indicating the person is present on that day.
+
+![ShowAttendanceSequenceDiagram](images/ShowAttendanceSequenceDiagram.png)
 
 ### Export attendance
 
