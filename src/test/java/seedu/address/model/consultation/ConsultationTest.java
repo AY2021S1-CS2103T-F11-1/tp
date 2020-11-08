@@ -1,6 +1,8 @@
 package seedu.address.model.consultation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
@@ -83,34 +85,40 @@ public class ConsultationTest {
     public void equals() {
         // same values -> returns true
         Consultation personalCopy = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).build();
-        assertTrue(ALICE_PERSONAL_CONSULT.equals(personalCopy));
+        assertEquals(personalCopy, ALICE_PERSONAL_CONSULT);
 
         // same object -> returns true
-        assertTrue(ALICE_PERSONAL_CONSULT.equals(ALICE_PERSONAL_CONSULT));
+        assertEquals(ALICE_PERSONAL_CONSULT, ALICE_PERSONAL_CONSULT);
+        assertEquals(ALICE_PERSONAL_CONSULT.hashCode(), ALICE_PERSONAL_CONSULT.hashCode());
 
         // null -> returns false
-        assertFalse(ALICE_PERSONAL_CONSULT.equals(null));
+        assertNotEquals(ALICE_PERSONAL_CONSULT, null);
 
         // different type -> returns false
-        assertFalse(ALICE_PERSONAL_CONSULT.equals(5));
+        assertNotEquals(ALICE_PERSONAL_CONSULT, 5);
 
         // different consultation -> returns false
-        assertFalse(ALICE_PERSONAL_CONSULT.equals(BENSON_GROUP_CONSULT));
+        assertNotEquals(BENSON_GROUP_CONSULT, ALICE_PERSONAL_CONSULT);
+        assertNotEquals(ALICE_PERSONAL_CONSULT.hashCode(), BENSON_GROUP_CONSULT.hashCode());
 
         // different name -> returns false
         Consultation editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE_PERSONAL_CONSULT.equals(editedConsult));
+        assertNotEquals(editedConsult, ALICE_PERSONAL_CONSULT);
+        assertNotEquals(ALICE_PERSONAL_CONSULT.hashCode(), editedConsult.hashCode());
 
         // different day -> returns false
         editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withDay(VALID_ATTENDANCE_BOB).build();
-        assertFalse(ALICE_PERSONAL_CONSULT.equals(editedConsult));
+        assertNotEquals(editedConsult, ALICE_PERSONAL_CONSULT);
+        assertNotEquals(ALICE_PERSONAL_CONSULT.hashCode(), editedConsult.hashCode());
 
         // different time -> returns false
         editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withTime(VALID_TIME_BOB).build();
-        assertFalse(ALICE_PERSONAL_CONSULT.equals(editedConsult));
+        assertNotEquals(editedConsult, ALICE_PERSONAL_CONSULT);
+        assertNotEquals(ALICE_PERSONAL_CONSULT.hashCode(), editedConsult.hashCode());
 
         // different location -> returns false
         editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withLocation(VALID_LOCATION_BOB).build();
-        assertFalse(ALICE_PERSONAL_CONSULT.equals(editedConsult));
+        assertNotEquals(editedConsult, ALICE_PERSONAL_CONSULT);
+        assertNotEquals(ALICE_PERSONAL_CONSULT.hashCode(), editedConsult.hashCode());
     }
 }
