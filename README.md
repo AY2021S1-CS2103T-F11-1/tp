@@ -1,5 +1,6 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-F11-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-F11-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S1-CS2103T-F11-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-F11-1/tp)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1e0606fe52f544aba04b1c6bb92b2f5f)](https://www.codacy.com/gh/AY2021S1-CS2103T-F11-1/tp/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AY2021S1-CS2103T-F11-1/tp&amp;utm_campaign=Badge_Grade)
 
 # TAsker
 
