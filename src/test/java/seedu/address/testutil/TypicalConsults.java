@@ -42,17 +42,24 @@ public class TypicalConsults {
     } // prevents instantiation
 
     /**
-     * Returns an {@code Tasker} with all the typical consultations.
+     * Returns a {@code Tasker} with all the typical consultations.
+     *
+     * @return a {@code Tasker} with all the typical consultations
      */
-    public static Tasker getTypicalAddressBook() {
+    public static Tasker getTypicalTasker() {
         Tasker ab = new Tasker();
-        for (Consultation consultation : getTypicalPersons()) {
+        for (Consultation consultation : getTypicalConsultations()) {
             ab.addConsultation(consultation);
         }
         return ab;
     }
 
-    public static List<Consultation> getTypicalPersons() {
+    /**
+     * Returns a list of typical {@code Consultation}s.
+     *
+     * @return list of typical {@code Consultation}s
+     */
+    public static List<Consultation> getTypicalConsultations() {
         return new ArrayList<>(Arrays.asList(ALICE_PERSONAL_CONSULT, BENSON_GROUP_CONSULT));
     }
 }
