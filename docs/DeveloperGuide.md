@@ -391,6 +391,18 @@ class PersonBuilder {
 
 All our existing tests using `PersonBuilder` will still work, and all we had to do was update definitions in `PersonBuilder`.
 
+### Show attendance
+
+Shows if a student is present on a specific day.
+
+![ShowAttendanceSequenceDiagram](images/ShowAttendanceSequenceDiagram.png)
+
+1. Parse the `showatt` command
+2. Get the person list
+3. Select the person at the specified index, date
+4. If no such person exists, indicate the person is absent
+5. Otherwise indicate the person is present on that day.
+
 ### Export attendance
 
 The `ExportAttendanceCommand` writes a new csv to `data/attendance_{CURRENT_DATE}_{CURRENT_TIME}.csv`. The csv columns headers are the names of the students and the rows are the dates. Each cell is marked with `ATTENDED` or `ABSENT` depending on whether the attendance for that student on that particular date has been marked.
