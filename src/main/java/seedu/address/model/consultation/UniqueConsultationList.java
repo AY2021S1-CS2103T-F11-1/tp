@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.consultation.exceptions.ConflictingPersonalConsultationException;
 import seedu.address.model.consultation.exceptions.ConsultationNotFoundException;
 import seedu.address.model.consultation.exceptions.DuplicateConsultationException;
 
@@ -37,8 +38,18 @@ public class UniqueConsultationList implements Iterable<Consultation> {
      */
     public boolean contains(Consultation toCheck) {
         requireNonNull(toCheck);
-        // to guard against 2 different personal consults being added at the same timings
-        return internalConsults.stream().anyMatch(consultation -> consultation.isSameConsultation(toCheck));
+        return internalConsults.stream().anyMatch(toCheck::isSameConsultation);
+    }
+
+    /**
+     * Returns true if the list contains an personal consultation that conflicts with as the given argument
+     * in terms of timing.
+     *
+     * @param toCheck Consultation being checked.
+     * @return Presence of conflicting consultation.
+     */
+    public boolean hasConflictingPersonalConsult(Consultation toCheck) {
+        return internalConsults.stream().anyMatch(toCheck::isPersonalConsultationOnSameTiming);
     }
 
     /**
@@ -52,6 +63,10 @@ public class UniqueConsultationList implements Iterable<Consultation> {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateConsultationException();
+        }
+        // conflicting personal consultation
+        if (hasConflictingPersonalConsult(toAdd)) {
+            throw new ConflictingPersonalConsultationException();
         }
         internalConsults.add(toAdd);
     }

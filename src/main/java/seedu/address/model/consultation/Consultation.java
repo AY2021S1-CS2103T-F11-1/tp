@@ -69,8 +69,23 @@ public class Consultation {
         return consultation != null
                 && consultation.getDate().equals(getDate())
                 && consultation.getTime().equals(getTime())
-                && (consultation.getType().type.equals(ConsultationType.PERSONAL)
-                || consultation.getName().equals(getName()));
+                && consultation.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if a personal consultation is added on the same time & day as another consultation.
+     *
+     * @param consultation Consultation to be added.
+     * @return Presence of conflicting consultation.
+     */
+    public boolean isPersonalConsultationOnSameTiming(Consultation consultation) {
+        if (consultation == this) {
+            return true;
+        }
+        return consultation != null
+                && getType().type.equals(ConsultationType.PERSONAL)
+                && consultation.getDate().equals(getDate())
+                && consultation.getTime().equals(getTime());
     }
 
     /**

@@ -123,6 +123,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasConflictingPersonalConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return tasker.hasConflictingPersonalConsultation(consultation);
+    }
+
+    @Override
     public void addConsultation(Consultation consultation) {
         tasker.addConsultation(consultation);
         updateFilteredConsultList(PREDICATE_SHOW_ALL_CONSULTS);

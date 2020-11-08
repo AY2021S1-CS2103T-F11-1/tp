@@ -96,6 +96,11 @@ public interface Model {
     boolean hasConsult(Consultation consultation);
 
     /**
+     * Returns true if a consultation with the same identity as {@code consultation} exists in the address book.
+     */
+    boolean hasConflictingPersonalConsultation(Consultation consultation);
+
+    /**
      * Adds the given consultation.
      * {@code consultation} must not already exist in the address book.
      */

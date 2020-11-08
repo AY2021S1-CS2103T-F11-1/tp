@@ -32,7 +32,7 @@ public class AddConsultCommand extends Command {
             + PREFIX_TYPE + "personal ";
 
     public static final String MESSAGE_SUCCESS = "New consultation added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation slot is already taken up!";
+    public static final String MESSAGE_DUPLICATE_CONSULTATION = "This consultation slot has already been taken up!";
 
     private final Consultation toAdd;
 
@@ -50,7 +50,7 @@ public class AddConsultCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasConsult(toAdd)) {
+        if (model.hasConsult(toAdd) || model.hasConflictingPersonalConsultation(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
 

@@ -43,9 +43,9 @@ public class ConsultationTest {
                 .withType(VALID_TYPE_BOB).build();
         assertTrue(ALICE_PERSONAL_CONSULT.isSameConsultation(editedConsult));
 
-        // same type, same time, same day, different attributes -> returns true
-        editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withName(VALID_NAME_BOB)
-                .withLocation(VALID_LOCATION_BOB).build();
+        // same name, same time, same day, different attributes -> returns true
+        editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withLocation(VALID_LOCATION_BOB)
+                .withType(VALID_TYPE_BOB).build();
         assertTrue(ALICE_PERSONAL_CONSULT.isSameConsultation(editedConsult));
 
     }

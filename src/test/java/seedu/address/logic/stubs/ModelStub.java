@@ -92,6 +92,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasConflictingPersonalConsultation(Consultation consultation) {
+        return false;
+    }
+
+    @Override
     public void addConsultation(Consultation consultation) {
         throw new AssertionError("This method should not be called.");
     }

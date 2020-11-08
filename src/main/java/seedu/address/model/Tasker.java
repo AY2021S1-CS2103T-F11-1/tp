@@ -114,6 +114,14 @@ public class Tasker implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a personal consultation conflicts with other {@code consultation} at the same time and date.
+     */
+    public boolean hasConflictingPersonalConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return consults.hasConflictingPersonalConsult(consultation);
+    }
+
+    /**
      * Adds a consultation to the address book.
      * The consultation must not already exist in the address book.
      */
