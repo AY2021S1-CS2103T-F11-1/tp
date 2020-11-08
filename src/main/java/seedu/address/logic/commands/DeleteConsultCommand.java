@@ -36,13 +36,13 @@ public class DeleteConsultCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Consultation> consultations = model.getFilteredConsultList();
+        List<Consultation> lastShownConsultations = model.getFilteredConsultList();
 
-        if (targetIndex.getZeroBased() >= consultations.size()) {
+        if (targetIndex.getZeroBased() >= lastShownConsultations.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Consultation consultationToDelete = consultations.get(targetIndex.getZeroBased());
+        Consultation consultationToDelete = lastShownConsultations.get(targetIndex.getZeroBased());
         model.deleteConsultation(consultationToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, consultationToDelete));
     }
