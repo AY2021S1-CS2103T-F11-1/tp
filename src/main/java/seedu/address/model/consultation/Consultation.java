@@ -69,7 +69,8 @@ public class Consultation {
         return consultation != null
                 && consultation.getDate().equals(getDate())
                 && consultation.getTime().equals(getTime())
-                && consultation.getName().equals(getName());
+                && (consultation.getType().type.equals(ConsultationType.PERSONAL)
+                || consultation.getName().equals(getName()));
     }
 
     /**

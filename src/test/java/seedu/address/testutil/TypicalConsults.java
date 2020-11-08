@@ -25,9 +25,9 @@ import seedu.address.model.consultation.Consultation;
  */
 public class TypicalConsults {
 
-    public static final Consultation PERSONAL = new ConsultationBuilder().withName("Alice Pauline")
+    public static final Consultation ALICE_PERSONAL_CONSULT = new ConsultationBuilder().withName("Alice Pauline")
             .withDay("10/10/2020").withTime("18:00").withLocation("Tembusu College").withType("personal").build();
-    public static final Consultation GROUP = new ConsultationBuilder().withName("Benson Meier")
+    public static final Consultation BENSON_GROUP_CONSULT = new ConsultationBuilder().withName("Benson Meier")
             .withDay("12/10/2020").withTime("10:00").withLocation("Kent Ridge Drive").withType("group").build();
 
     // Manually added - Consultation's details found in {@code CommandTestUtil}
@@ -53,6 +53,6 @@ public class TypicalConsults {
     }
 
     public static List<Consultation> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(PERSONAL, GROUP));
+        return new ArrayList<>(Arrays.asList(ALICE_PERSONAL_CONSULT, BENSON_GROUP_CONSULT));
     }
 }

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalConsults.GROUP;
-import static seedu.address.testutil.TypicalConsults.PERSONAL;
+import static seedu.address.testutil.TypicalConsults.ALICE_PERSONAL_CONSULT;
+import static seedu.address.testutil.TypicalConsults.BENSON_GROUP_CONSULT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,19 +29,19 @@ public class UniqueConsultationListTest {
 
     @Test
     public void contains_consultNotInList_returnsFalse() {
-        assertFalse(uniqueConsultList.contains(PERSONAL));
+        assertFalse(uniqueConsultList.contains(ALICE_PERSONAL_CONSULT));
     }
 
     @Test
     public void contains_consultInList_returnsTrue() {
-        uniqueConsultList.add(PERSONAL);
-        assertTrue(uniqueConsultList.contains(PERSONAL));
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        assertTrue(uniqueConsultList.contains(ALICE_PERSONAL_CONSULT));
     }
 
     @Test
     public void contains_consultWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueConsultList.add(PERSONAL);
-        Consultation editedConsult = new ConsultationBuilder(PERSONAL).withType(VALID_TYPE_BOB)
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        Consultation editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withType(VALID_TYPE_BOB)
                 .build();
         assertTrue(uniqueConsultList.contains(editedConsult));
     }
@@ -53,41 +53,44 @@ public class UniqueConsultationListTest {
 
     @Test
     public void add_duplicateConsult_throwsDuplicateConsultationException() {
-        uniqueConsultList.add(PERSONAL);
-        assertThrows(DuplicateConsultationException.class, () -> uniqueConsultList.add(PERSONAL));
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        assertThrows(DuplicateConsultationException.class, () -> uniqueConsultList.add(ALICE_PERSONAL_CONSULT));
     }
 
     @Test
     public void setConsult_nullConsultation_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueConsultList.setConsultation(null, PERSONAL));
+        assertThrows(NullPointerException.class, () -> uniqueConsultList
+                .setConsultation(null, ALICE_PERSONAL_CONSULT)
+        );
     }
 
     @Test
     public void setConsult_nullEditedConsult_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueConsultList
-                .setConsultation(PERSONAL, null));
+                .setConsultation(ALICE_PERSONAL_CONSULT, null));
     }
 
     @Test
     public void setConsult_targetConsultNotInList_throwsConsultationNotFoundException() {
-        assertThrows(ConsultationNotFoundException.class, () -> uniqueConsultList.setConsultation(PERSONAL, PERSONAL));
+        assertThrows(ConsultationNotFoundException.class, () -> uniqueConsultList
+                .setConsultation(ALICE_PERSONAL_CONSULT, ALICE_PERSONAL_CONSULT));
     }
 
     @Test
     public void setConsult_editedConsultIsSameConsult_success() {
-        uniqueConsultList.add(PERSONAL);
-        uniqueConsultList.setConsultation(PERSONAL, PERSONAL);
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        uniqueConsultList.setConsultation(ALICE_PERSONAL_CONSULT, ALICE_PERSONAL_CONSULT);
         UniqueConsultationList uniqueConsultationList = new UniqueConsultationList();
-        uniqueConsultationList.add(PERSONAL);
+        uniqueConsultationList.add(ALICE_PERSONAL_CONSULT);
         assertEquals(uniqueConsultationList, uniqueConsultList);
     }
 
     @Test
     public void setConsult_editedConsultHasSameIdentity_success() {
-        uniqueConsultList.add(PERSONAL);
-        Consultation editedConsult = new ConsultationBuilder(PERSONAL).withType(VALID_TYPE_BOB)
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        Consultation editedConsult = new ConsultationBuilder(ALICE_PERSONAL_CONSULT).withType(VALID_TYPE_BOB)
                 .build();
-        uniqueConsultList.setConsultation(PERSONAL, editedConsult);
+        uniqueConsultList.setConsultation(ALICE_PERSONAL_CONSULT, editedConsult);
         UniqueConsultationList expectedUniqueConsultationList = new UniqueConsultationList();
         expectedUniqueConsultationList.add(editedConsult);
         assertEquals(expectedUniqueConsultationList, uniqueConsultList);
@@ -95,18 +98,19 @@ public class UniqueConsultationListTest {
 
     @Test
     public void setConsult_editedConsultHasDifferentIdentity_success() {
-        uniqueConsultList.add(PERSONAL);
-        uniqueConsultList.setConsultation(PERSONAL, GROUP);
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        uniqueConsultList.setConsultation(ALICE_PERSONAL_CONSULT, BENSON_GROUP_CONSULT);
         UniqueConsultationList expectedUniquePersonList = new UniqueConsultationList();
-        expectedUniquePersonList.add(GROUP);
+        expectedUniquePersonList.add(BENSON_GROUP_CONSULT);
         assertEquals(expectedUniquePersonList, uniqueConsultList);
     }
 
     @Test
     public void setConsult_editedConsultHasNonUniqueIdentity_throwsDuplicateConsultationException() {
-        uniqueConsultList.add(PERSONAL);
-        uniqueConsultList.add(GROUP);
-        assertThrows(DuplicateConsultationException.class, () -> uniqueConsultList.setConsultation(PERSONAL, GROUP));
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        uniqueConsultList.add(BENSON_GROUP_CONSULT);
+        assertThrows(DuplicateConsultationException.class, () -> uniqueConsultList
+                .setConsultation(ALICE_PERSONAL_CONSULT, BENSON_GROUP_CONSULT));
     }
 
     @Test
@@ -116,13 +120,13 @@ public class UniqueConsultationListTest {
 
     @Test
     public void remove_consultDoesNotExist_throwsConsultationNotFoundException() {
-        assertThrows(ConsultationNotFoundException.class, () -> uniqueConsultList.remove(PERSONAL));
+        assertThrows(ConsultationNotFoundException.class, () -> uniqueConsultList.remove(ALICE_PERSONAL_CONSULT));
     }
 
     @Test
     public void remove_existingConsult_removesConsult() {
-        uniqueConsultList.add(PERSONAL);
-        uniqueConsultList.remove(PERSONAL);
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        uniqueConsultList.remove(ALICE_PERSONAL_CONSULT);
         UniqueConsultationList expectedUniqueConsultationList = new UniqueConsultationList();
         assertEquals(expectedUniqueConsultationList, uniqueConsultList);
     }
@@ -135,9 +139,9 @@ public class UniqueConsultationListTest {
 
     @Test
     public void setConsults_uniqueConsultationList_replacesOwnListWithProvidedUniqueConsultationList() {
-        uniqueConsultList.add(PERSONAL);
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
         UniqueConsultationList expectedUniqueConsultationList = new UniqueConsultationList();
-        expectedUniqueConsultationList.add(PERSONAL);
+        expectedUniqueConsultationList.add(ALICE_PERSONAL_CONSULT);
         uniqueConsultList.setConsultations(expectedUniqueConsultationList);
         assertEquals(expectedUniqueConsultationList, uniqueConsultList);
     }
@@ -149,17 +153,18 @@ public class UniqueConsultationListTest {
 
     @Test
     public void setConsultations_list_replacesOwnListWithProvidedList() {
-        uniqueConsultList.add(PERSONAL);
-        List<Consultation> consultationList = Collections.singletonList(GROUP);
+        uniqueConsultList.add(ALICE_PERSONAL_CONSULT);
+        List<Consultation> consultationList = Collections.singletonList(BENSON_GROUP_CONSULT);
         uniqueConsultList.setConsultations(consultationList);
         UniqueConsultationList expectedUniqueConsultationList = new UniqueConsultationList();
-        expectedUniqueConsultationList.add(GROUP);
+        expectedUniqueConsultationList.add(BENSON_GROUP_CONSULT);
         assertEquals(expectedUniqueConsultationList, uniqueConsultList);
     }
 
     @Test
     public void setConsultations_listWithDuplicateConsultations_throwsDuplicateConsultationException() {
-        List<Consultation> listWithDuplicateConsultations = Arrays.asList(PERSONAL, PERSONAL);
+        List<Consultation> listWithDuplicateConsultations =
+                Arrays.asList(ALICE_PERSONAL_CONSULT, ALICE_PERSONAL_CONSULT);
         assertThrows(DuplicateConsultationException.class, () -> uniqueConsultList
                 .setConsultations(listWithDuplicateConsultations));
     }

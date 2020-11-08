@@ -37,7 +37,8 @@ public class UniqueConsultationList implements Iterable<Consultation> {
      */
     public boolean contains(Consultation toCheck) {
         requireNonNull(toCheck);
-        return internalConsults.stream().anyMatch(toCheck::isSameConsultation);
+        // to guard against 2 different personal consults being added at the same timings
+        return internalConsults.stream().anyMatch(consultation -> consultation.isSameConsultation(toCheck));
     }
 
     /**
