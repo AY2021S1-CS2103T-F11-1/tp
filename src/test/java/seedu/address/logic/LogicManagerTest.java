@@ -94,6 +94,16 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void getMethods() {
+        assertEquals(logic.getAddressBook(), model.getAddressBook());
+        assertEquals(logic.getFilteredPersonList(), model.getFilteredPersonList());
+        assertEquals(logic.getFilteredConsultationList(), model.getFilteredConsultList());
+        assertEquals(logic.getGuiSettings(), model.getGuiSettings());
+        logic.setGuiSettings(model.getGuiSettings());
+        assertEquals(logic.getGuiSettings(), model.getGuiSettings());
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
