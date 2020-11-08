@@ -17,7 +17,7 @@ import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteConsultCommand}.
  */
 public class DeleteConsultCommandTest {
 
