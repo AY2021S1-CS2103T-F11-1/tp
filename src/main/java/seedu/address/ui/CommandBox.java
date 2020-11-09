@@ -3,6 +3,7 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,6 +30,34 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent keyEvent) -> {
+            switch (keyEvent.getCode()) {
+            case UP:
+                fillWithPreviousCommandIfPresent();
+                keyEvent.consume();
+                break;
+            case DOWN:
+                fillWithNextCommandIfPresent();
+                keyEvent.consume();
+                break;
+            default:
+                break;
+            }
+        });
+    }
+
+    private void fillWithPreviousCommandIfPresent() {
+        CommandHistory.getInstance().fetchPrevious().ifPresent(command -> {
+            commandTextField.setText(command);
+            commandTextField.positionCaret(commandTextField.getText().length());
+        });
+    }
+
+    private void fillWithNextCommandIfPresent() {
+        CommandHistory.getInstance().fetchNext().ifPresent(command -> {
+            commandTextField.setText(command);
+            commandTextField.positionCaret(commandTextField.getText().length());
+        });
     }
 
     /**
@@ -37,10 +66,15 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         try {
-            commandExecutor.execute(commandTextField.getText());
+            String enteredCommand = commandTextField.getText();
+            CommandHistory.getInstance().push(enteredCommand);
+            commandExecutor.execute(enteredCommand);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+
+            // Force the command history to point at the previous command (the errored command)
+            CommandHistory.getInstance().fetchPrevious();
         }
     }
 

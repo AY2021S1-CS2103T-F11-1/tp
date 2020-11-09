@@ -48,7 +48,9 @@ public class CommandHistory {
         history.add(command);
 
         // Resets the pointer to point at the last command
-        pointer = history.size() - 1;
+        // This is intentionally set to be out-of-bounds. The accessor methods will never have any
+        // out-of-bounds accesses.
+        pointer = history.size();
     }
 
     /**
@@ -63,9 +65,11 @@ public class CommandHistory {
         if (history.isEmpty()) {
             return Optional.empty();
         }
-        Optional<String> lastCommand = Optional.of(history.get(pointer));
-        pointer = (pointer - 1) % history.size();
-        return lastCommand;
+        if (--pointer < 0) {
+            pointer = history.size() - 1;
+        }
+
+        return Optional.of(history.get(pointer));
     }
 
     /**
@@ -80,8 +84,7 @@ public class CommandHistory {
         if (history.isEmpty()) {
             return Optional.empty();
         }
-        Optional<String> nextCommand = Optional.of(history.get(pointer));
         pointer = (pointer + 1) % history.size();
-        return nextCommand;
+        return Optional.of(history.get(pointer));
     }
 }
