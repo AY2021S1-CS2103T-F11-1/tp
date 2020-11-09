@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 
 public class CommandHistory {
