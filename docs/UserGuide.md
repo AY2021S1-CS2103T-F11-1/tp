@@ -11,7 +11,7 @@ TAsker is a **desktop app for Teaching Assistants (TAs) to manage student admini
 
 ---
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -97,7 +97,7 @@ Examples:
 
 Shows a list of all students that the TA is in-charge of.
 
-You may navigate to the Students tab to view the full list of students.
+You may click on the Students tab to view the full list of students.
 
 Format: `list`
 
@@ -232,9 +232,9 @@ Examples:
 
 ### Listing all consultations: `list-consult`
 
-Shows a list of all consultations in charge by the TA. 
+Shows a list of all consultations that has been arranged with your students.
 
-You may navigate to the Consultations tab to view the full list of consultations.
+You may click on the Consultations tab to view the full list of consultations.
 
 Format: `list-consult`
 
@@ -271,7 +271,7 @@ Format: `exit`
 
 **Q**: How do I transfer my data to another Computer?
 <br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAsker home folder.
+**A**: Install the app in the other computer and overwrite the `data` folder that TAsker creates with the `data` folder from your previous TAsker installation. The `data` folder should be in the folder where TAsker is installed to.
 <br>
 
 **Q**: Can I import existing spreadsheets of my students?
@@ -296,7 +296,7 @@ Format: `exit`
 
 ---
 
-## Command summary
+## Command Summary
 
 | Action                   | Format, Examples                                                                                                                                                                                                           |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
