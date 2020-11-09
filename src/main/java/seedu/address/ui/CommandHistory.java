@@ -5,11 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
+import seedu.address.commons.core.LogsCenter;
 
 public class CommandHistory {
 
     private static CommandHistory commandHistory = null;
 
+    private final Logger logger = LogsCenter.getLogger(CommandHistory.class);
     private final List<String> history;
     private int pointer;
 
@@ -46,6 +49,7 @@ public class CommandHistory {
     public void push(String command) {
         requireNonNull(command);
         history.add(command);
+        logger.fine("New command added to history: " + command);
 
         // Resets the pointer to point at the last command
         // This is intentionally set to be out-of-bounds. The accessor methods will never have any
@@ -63,6 +67,7 @@ public class CommandHistory {
      */
     public Optional<String> fetchPrevious() {
         if (history.isEmpty()) {
+            logger.fine("Empty history, nothing to fetch");
             return Optional.empty();
         }
         if (--pointer < 0) {
@@ -82,6 +87,7 @@ public class CommandHistory {
      */
     public Optional<String> fetchNext() {
         if (history.isEmpty()) {
+            logger.fine("Empty history, nothing to fetch");
             return Optional.empty();
         }
         pointer = (pointer + 1) % history.size();
