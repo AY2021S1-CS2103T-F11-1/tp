@@ -9,6 +9,12 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 
+/**
+ * Keeps track of which commands have been previously entered, so that past commands
+ * can easily be re-entered.
+ *
+ * Follows a singleton design pattern, so that the command history can only be instantiated once.
+ */
 public class CommandHistory {
 
     private static CommandHistory commandHistory = null;
