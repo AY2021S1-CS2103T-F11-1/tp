@@ -20,14 +20,14 @@ public class CommandHistory {
     private static CommandHistory commandHistory = null;
 
     private final Logger logger = LogsCenter.getLogger(CommandHistory.class);
-    private final List<String> history;
+    private final List<String> executedCommands;
     private int pointer;
 
     /**
      * Private constructor, only to be called by `getInstance`
      */
     private CommandHistory() {
-        history = new ArrayList<>();
+        executedCommands = new ArrayList<>();
 
         // Initial value doesn't matter, pointer is reset when a new command is pushed
         pointer = -1;
@@ -55,13 +55,13 @@ public class CommandHistory {
      */
     public void push(String command) {
         requireNonNull(command);
-        history.add(command);
+        executedCommands.add(command);
         logger.fine("New command added to history: " + command);
 
         // Resets the pointer to point at the last command
         // This is intentionally set to be out-of-bounds. The accessor methods will never have any
         // out-of-bounds accesses.
-        pointer = history.size();
+        pointer = executedCommands.size();
     }
 
     /**
@@ -73,15 +73,15 @@ public class CommandHistory {
      * @return previous command wrapped in a {@link Optional}
      */
     public Optional<String> fetchPrevious() {
-        if (history.isEmpty()) {
+        if (executedCommands.isEmpty()) {
             logger.fine("Empty history, nothing to fetch");
             return Optional.empty();
         }
         if (--pointer < 0) {
-            pointer = history.size() - 1;
+            pointer = executedCommands.size() - 1;
         }
 
-        return Optional.of(history.get(pointer));
+        return Optional.of(executedCommands.get(pointer));
     }
 
     /**
@@ -93,11 +93,11 @@ public class CommandHistory {
      * @return next command wrapped in a {@link Optional}
      */
     public Optional<String> fetchNext() {
-        if (history.isEmpty()) {
+        if (executedCommands.isEmpty()) {
             logger.fine("Empty history, nothing to fetch");
             return Optional.empty();
         }
-        pointer = (pointer + 1) % history.size();
-        return Optional.of(history.get(pointer));
+        pointer = (pointer + 1) % executedCommands.size();
+        return Optional.of(executedCommands.get(pointer));
     }
 }
